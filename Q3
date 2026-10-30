@@ -1,0 +1,33 @@
+#include <iostream>
+#include <cmath>
+using namespace std;
+
+// 辗转相除法（欧几里得算法）
+int getGCD(int a, int b) {
+    a = abs(a);
+    b = abs(b);
+    while (b != 0) {
+        int temp = a % b;
+        a = b;
+        b = temp;
+    }
+    return a;
+}
+
+// 利用公式 LCM(a, b) = (|a * b|) / GCD(a, b)
+int getLCM(int a, int b) {
+    if (a == 0 || b == 0) return 0;
+    // 先除后乘，防止 a * b 溢出 int 范围
+    return (abs(a) / getGCD(a, b)) * abs(b);
+}
+
+int main() {
+    int num1, num2;
+    cout << "【3-10 题】请输入两个整数: ";
+    if (cin >> num1 >> num2) {
+        cout << num1 << " 和 " << num2 << " 的最大公约数 (GCD) 为: " << getGCD(num1, num2) << endl;
+        cout << num1 << " 和 " << num2 << " 的最小公倍数 (LCM) 为: " << getLCM(num1, num2) << endl;
+    }
+    return 0;
+}
+
