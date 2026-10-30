@@ -1,0 +1,23 @@
+#include <iostream>
+using namespace std;
+
+int fib(int n) {
+    if (n <= 0) return 0;
+    if (n == 1 || n == 2) {
+        return 1; // 递归基
+    }
+    return fib(n - 1) + fib(n - 2); // 递归步
+}
+
+int main() {
+    int n;
+    cout << "【3-13 题】请输入要求解的 Fibonacci 项数 n: ";
+    if (cin >> n) {
+        if (n <= 0) {
+            cout << "项数必须大于 0！" << endl;
+        } else {
+            cout << "Fibonacci 第 " << n << " 项的值为: " << fib(n) << endl;
+        }
+    }
+    return 0;
+}
