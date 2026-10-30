@@ -1,0 +1,35 @@
+#include <iostream>
+using namespace std;
+
+// 1. 整型版本：当 y < 0 时返回 0
+int getPower(int x, int y) {
+    if (y < 0) return 0;
+    if (y == 0) return 1;
+    return x * getPower(x, y - 1);
+}
+
+// 2. 实型版本：能够准确计算负指数
+double getPower(double x, int y) {
+    if (y == 0) return 1.0;
+    if (y > 0) return x * getPower(x, y - 1);
+    return (1.0 / x) * getPower(x, y + 1); // 负指数向 0 逼近
+}
+
+int main() {
+    int a, m;
+    double b;
+
+    cout << "【3-15 题】请输入整数底数 a、实数底数 b 和整数指数 m: ";
+    if (cin >> a >> b >> m) {
+        // (1) 匹配整型重载
+        cout << a << "^" << m << " (整型版本) = " << getPower(a, m) << endl;
+
+        // (2) 匹配实型重载
+        cout << b << "^" << m << " (实型版本) = " << getPower(b, m) << endl;
+
+        // (3) 思考题解答：通过显式类型转换，调用实型版本精确计算 a^m
+        cout << a << "^" << m << " (实型转换计算) = " 
+             << getPower(static_cast<double>(a), m) << endl;
+    }
+    return 0;
+}
