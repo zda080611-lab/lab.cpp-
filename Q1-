@@ -1,0 +1,23 @@
+#include <iostream>
+using namespace std;
+
+short int divide(unsigned short int a, unsigned short int b) {
+    if (b == 0) {
+        return -1; 
+    }
+    return static_cast<short int>(a / b);
+}
+
+int main() {
+    unsigned short int num1, num2;
+    cout << "请输入被除数和除数 (unsigned short int): ";
+    if (cin >> num1 >> num2) {
+        short int result = divide(num1, num2);
+        if (result == -1) {
+            cout << "错误：除数不能为 0！（函数返回: " << result << "）" << endl;
+        } else {
+            cout << num1 << " / " << num2 << " = " << result << endl;
+        }
+    }
+    return 0;
+}
